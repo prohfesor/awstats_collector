@@ -1,0 +1,2 @@
+AWSTATS_DIR=/var/www/awstats
+${AWSTATS_DIR}/tools/awstats_updateall.pl now -awstatsprog=${AWSTATS_DIR}/awstats.pl -configdir=${AWSTATS_DIR}/config
