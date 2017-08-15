@@ -1,0 +1,26 @@
+#!/bin/bash
+AWSTATS_DIR=/var/www/awstats
+LANGUAGE=ru
+
+#build pages
+for FILE in $AWSTATS_DIR/config/*; do
+    if [ -f "${FILE}" ]; then
+	HOST=${FILE##*/}
+	HOST=$(echo "$HOST" | sed 's/^awstats\.//g' | sed 's/\.conf$//g')
+	if [ $HOST == "model" ]; then
+	    continue
+	fi
+	echo " Configuration ${HOST} "
+	${AWSTATS_DIR}/awstats.pl update now -output -staticlinks -config=${FILE} --lang=${LANGUAGE} > ${AWSTATS_DIR}/${HOST}.html
+    fi
+done
+
+#build list of pages
+LIST=$AWSTATS_DIR/list.html
+echo "<h1>List</h1>" > $LIST
+for FILE in $AWSTATS_DIR/*.html; do
+    if [ -f "${FILE}" ]; then
+	FILE=${FILE##*/}
+	echo " <a href='${FILE}'>${FILE}</a> <br>" >> $LIST
+    fi
+done
