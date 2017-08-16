@@ -12,6 +12,9 @@ for DIR in $WEBSITES_DIR/*; do
 	    CONFIG_FILE=${AWSTATS_CONFIG_DIR}/awstats.${VHOST}.conf
 	    cp ${0%/*}/awstats.vhost.conf ${CONFIG_FILE}
 	    sed -i -e s@"\$HOST"@$VHOST@g $CONFIG_FILE
+	    if [ ! -d "${AWSTATS_CONFIG_DIR}/../data/${VHOST}" ]; then
+		mkdir ${AWSTATS_CONFIG_DIR}/../data/${VHOST}
+	    fi
 	else
 	    echo " [ NO LOG ]"
         fi

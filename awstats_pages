@@ -10,7 +10,7 @@ for FILE in $AWSTATS_DIR/config/*; do
 	if [ $HOST == "model" ]; then
 	    continue
 	fi
-	echo " Configuration ${HOST} "
+	echo " Pages for ${HOST} "
 	${AWSTATS_DIR}/awstats.pl update now -output -staticlinks -config=${FILE} --lang=${LANGUAGE} > ${AWSTATS_DIR}/${HOST}.html
     fi
 done
