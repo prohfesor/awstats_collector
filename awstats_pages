@@ -2,7 +2,7 @@
 c=${0%/*}/config ; source "$c" ; if [ $? -ne 0 ] ; then echo "Error: no config file $c" 1>&2 ; exit 1 ; fi
 
 #build pages
-for FILE in $AWSTATS_DIR/*; do
+for FILE in $AWSTATS_CONFIG_DIR/*; do
     if [ -f "${FILE}" ]; then
 	HOST=${FILE##*/}
 	HOST=$(echo "$HOST" | sed 's/^awstats\.//g' | sed 's/\.conf$//g')
@@ -11,14 +11,14 @@ for FILE in $AWSTATS_DIR/*; do
 	fi
 	echo " Pages for ${HOST} "
 	echo $FILE
-	${AWSTATS_BIN} update now -output -staticlinks -config=${HOST} --lang=${AWSTATS_LANG} > ${AWSTATS_DIR}/daata/${HOST}.html
+	${AWSTATS_BIN} update now -output -staticlinks -config=${HOST} --lang=${AWSTATS_LANG} > ${AWSTATS_DATA_DIR}/${HOST}.html
     fi
 done
 
 #build list of pages
-LIST=$AWSTATS_DIR/daata/list.html
+LIST=$AWSTATS_DATA_DIR/list.html
 echo "<h1>List</h1>" > $LIST
-for FILE in $AWSTATS_DIR/*.html; do
+for FILE in $AWSTATS_DATA_DIR/*.html; do
     if [ -f "${FILE}" ]; then
 	FILE=${FILE##*/}
 	echo " <a href='${FILE}'>${FILE}</a> <br>" >> $LIST
