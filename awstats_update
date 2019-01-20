@@ -1,2 +1,4 @@
-AWSTATS_DIR=/var/www/awstats
-${AWSTATS_DIR}/tools/awstats_updateall.pl now -awstatsprog=${AWSTATS_DIR}/awstats.pl -configdir=${AWSTATS_DIR}/config
+!#/bin/bash
+c=${0%/*}/config ; source "$c" ; if [ $? -ne 0 ] ; then echo "Error: no config file $c" 1>&2 ; exit 1 ; fi
+
+${AWSTATS_DIR}/tools/awstats_updateall.pl now -awstatsprog=${AWSTATS_BIN} -configdir=${AWSTATS_DIR}/config
