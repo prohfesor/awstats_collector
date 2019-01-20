@@ -1,7 +1,5 @@
 #!/bin/bash
-WEBSITES_DIR=/var/www/vhosts
-AWSTATS_CONFIG_DIR=/etc/awstats
-AWSTATS_DATA_DIR=/usr/local/etc/awstats/daata
+c=${0%/*}/config ; source "$c" ; if [ $? -ne 0 ] ; then echo "Error: no config file $c" 1>&2 ; exit 1 ; fi
 
 #scan for directories
 for DIR in $WEBSITES_DIR/*; do
