@@ -1,0 +1,5 @@
+#!/bin/bash
+
+WEBSITES_DIR=/var/www/vhosts
+AWSTATS_CONFIG_DIR=/etc/awstats
+AWSTATS_DATA_DIR=/usr/local/etc/awstats/daata
