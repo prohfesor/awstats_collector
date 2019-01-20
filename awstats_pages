@@ -1,9 +1,9 @@
 #!/bin/bash
-AWSTATS_DIR=/var/www/awstats
+AWSTATS_DIR=/usr/local/etc/awstats
 LANGUAGE=ru
 
 #build pages
-for FILE in $AWSTATS_DIR/config/*; do
+for FILE in $AWSTATS_DIR/*; do
     if [ -f "${FILE}" ]; then
 	HOST=${FILE##*/}
 	HOST=$(echo "$HOST" | sed 's/^awstats\.//g' | sed 's/\.conf$//g')
@@ -11,12 +11,13 @@ for FILE in $AWSTATS_DIR/config/*; do
 	    continue
 	fi
 	echo " Pages for ${HOST} "
-	${AWSTATS_DIR}/awstats.pl update now -output -staticlinks -config=${FILE} --lang=${LANGUAGE} > ${AWSTATS_DIR}/${HOST}.html
+	echo $FILE
+	awstats update now -output -staticlinks -config=${HOST} --lang=${LANGUAGE} > ${AWSTATS_DIR}/daata/${HOST}.html
     fi
 done
 
 #build list of pages
-LIST=$AWSTATS_DIR/list.html
+LIST=$AWSTATS_DIR/daata/list.html
 echo "<h1>List</h1>" > $LIST
 for FILE in $AWSTATS_DIR/*.html; do
     if [ -f "${FILE}" ]; then

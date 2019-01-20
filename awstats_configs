@@ -1,6 +1,7 @@
 #!/bin/bash
 WEBSITES_DIR=/var/www/vhosts
-AWSTATS_CONFIG_DIR=/var/www/awstats/config
+AWSTATS_CONFIG_DIR=/etc/awstats
+AWSTATS_DATA_DIR=/usr/local/etc/awstats/daata
 
 #scan for directories
 for DIR in $WEBSITES_DIR/*; do
@@ -12,8 +13,8 @@ for DIR in $WEBSITES_DIR/*; do
 	    CONFIG_FILE=${AWSTATS_CONFIG_DIR}/awstats.${VHOST}.conf
 	    cp ${0%/*}/awstats.vhost.conf ${CONFIG_FILE}
 	    sed -i -e s@"\$HOST"@$VHOST@g $CONFIG_FILE
-	    if [ ! -d "${AWSTATS_CONFIG_DIR}/../data/${VHOST}" ]; then
-		mkdir ${AWSTATS_CONFIG_DIR}/../data/${VHOST}
+	    if [ ! -d "${AWSTATS_DATA_DIR}/${VHOST}" ]; then
+		mkdir ${AWSTATS_DATA_DIR}/${VHOST}
 	    fi
 	else
 	    echo " [ NO LOG ]"
