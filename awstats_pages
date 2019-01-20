@@ -1,6 +1,5 @@
 #!/bin/bash
-AWSTATS_DIR=/usr/local/etc/awstats
-LANGUAGE=ru
+c=${0%/*}/config ; source "$c" ; if [ $? -ne 0 ] ; then echo "Error: no config file $c" 1>&2 ; exit 1 ; fi
 
 #build pages
 for FILE in $AWSTATS_DIR/*; do
