@@ -11,7 +11,7 @@ for FILE in $AWSTATS_DIR/*; do
 	fi
 	echo " Pages for ${HOST} "
 	echo $FILE
-	awstats update now -output -staticlinks -config=${HOST} --lang=${LANGUAGE} > ${AWSTATS_DIR}/daata/${HOST}.html
+	${AWSTATS_BIN} update now -output -staticlinks -config=${HOST} --lang=${AWSTATS_LANG} > ${AWSTATS_DIR}/daata/${HOST}.html
     fi
 done
 
